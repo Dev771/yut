@@ -1,0 +1,20 @@
+body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.flex {
+    display: flex;
+    /* flex-direction: column; */
+}
+
+.Left {
+    width: 30vw;
+    background-color: aquamarine;
+}
+
+.Right {
+    width: 70vw;
+    background-color: black;
+}
