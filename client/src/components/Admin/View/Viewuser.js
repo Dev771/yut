@@ -12,7 +12,7 @@ const Usersapp = (props) => {
     useEffect(() => {
         axios.get('/api/admin/AllUser')
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 setUser(response.data.data);
             })    
     },[])
@@ -28,6 +28,7 @@ const Usersapp = (props) => {
                         <th>Id</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Type</th>
                     </tr>
             {user.map(a => (
                 <tr>
@@ -35,6 +36,7 @@ const Usersapp = (props) => {
                     <td>{a._id}</td>
                     <td style={{fontWeight:"900"}}>{a.name}</td>
                     <td>{a.email}</td>
+                    <td>{a.type}</td>
                 </tr>
                 ))}
             </table>

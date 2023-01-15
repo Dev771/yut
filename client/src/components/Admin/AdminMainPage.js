@@ -6,7 +6,7 @@ const AdminMainPage = (props) => {
     // let user = useSelector(state => state.user);
 
     useEffect(() => {
-        console.log(props)
+        // console.log(props)
         if(props.props.user.userData && props.props.user.userData.type !== 'Admin') {
             // alert(user.type)
             props.props.history.push("/")

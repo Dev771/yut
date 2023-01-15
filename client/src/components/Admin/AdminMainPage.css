@@ -6,6 +6,7 @@ body {
 
 .flex {
     display: flex;
+    gap:20px;
     /* flex-direction: column; */
 }
 
@@ -44,6 +45,7 @@ body {
 
 .Right {
     width: 90vw;
+    padding-right: 20px;
     /* background-color: black; */
 }
  
@@ -53,3 +55,36 @@ td, th {
     padding: 8px;
   }
 
+
+.button{
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 30px 5px;
+  border-radius: 100px;
+  color: white;
+}
+
+.cancel {
+  border: 2px solid rgb(235, 22, 22);
+  background-color: #c74444c4;
+}
+
+.cancel:hover{
+  background-color: #a02121;
+  }
+
+  .approve {
+    border: 2px solid rgb(58, 235, 22);
+    background-color: #2ea828ad;
+    margin-right: 40px;
+  }
+  
+  .approve:hover{
+    background-color: #90cb10;
+    }
+  
+  .admin{
+    border: 2px solid rgb(10, 132, 231);
+    background-color: #3e91f7a2;
+  }

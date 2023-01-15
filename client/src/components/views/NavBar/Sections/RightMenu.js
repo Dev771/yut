@@ -38,7 +38,7 @@ function RightMenu(props) {
     return (
       <div style={{display:"flex"}}>
       <div style={{paddingTop:"15px"}}>
-      <Avatar src={username} size="medium"/>
+        <a href='/AppVideo'><Avatar src={username} size="medium"/></a>
       </div>
       <Menu mode={props.mode}>
         <Menu.Item>

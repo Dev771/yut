@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../AdminMainPage.css';
 import axios from 'axios';
+import moment from 'moment';
 import {Typography } from 'antd';
 import AdminMainPage from '../AdminMainPage';
 // import { useNavigate } from 'react-router-dom'
@@ -56,8 +57,12 @@ const Videoapp = (props) => {
                     <tr>
                     <th>Title</th>
                     <th>Thumbnail</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Duration</th>
                     <th>Author</th>
-                    {/* <th>Description</th> */}
+                    <th>Author Email</th>
+                    <th>Author ID</th>
                     <th>Action</th>  
                     </tr>
                     {videos.map((a, i) => (
@@ -68,9 +73,14 @@ const Videoapp = (props) => {
                                 <img style={{ width: '7em',borderRadius: "5%", height:"4em" }} alt="thumbnail" src={`http://localhost:5000/${a.thumbnail}`} />
                             </a>
                         </td>
+                        <td>{moment(a.createdAt).format("MMM Do YY")}</td>
+                        <td>{a.description}</td>
+                        <td>{a.duration}</td>
                         <td style={{fontWeight:"900"}}>{a.writer.name}</td>
-                        {/* <td>{a.email}</td> */}
-                        <td><button onClick={() => handleClick(a, 'approve')}>Approve</button>  / <button onClick={() => handleClick(a, 'reject')}>Reject</button></td>
+                        <td>{a.writer.email}</td>
+                        <td>{a.writer._id}</td>
+                        <td><button className='button approve' onClick={() => handleClick(a, 'approve')}>Approve</button>   
+                        <button className='button cancel' onClick={() => handleClick(a, 'reject')}>Reject</button></td>
                     </tr>
                     ))}
                     </tbody>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+// import  DeleteOutlined  from '@ant-design/icons';
 import '../AdminMainPage.css';
 import axios from 'axios';
 import {Typography,Avatar } from 'antd';
@@ -28,6 +29,7 @@ const Usersapp = (props) => {
                             <th>Id</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>User Type</th>
                             <th>Action</th>
                         </tr>
                 {user.map(a => (
@@ -36,7 +38,23 @@ const Usersapp = (props) => {
                         <td>{a._id}</td>
                         <td style={{fontWeight:"900"}}>{a.name}</td>
                         <td>{a.email}</td>
-                        <td><button>Delete</button></td>
+                        <td>{a.type}</td>
+                        <td>
+                        {
+                            a.type == 'User' ? (
+                                <button className='button cancel'>
+                            <div>
+                                <span>
+                                    Delete
+                                </span>
+                            </div>
+                            </button>
+                            ) : (
+                                <button className='button admin'>Can not Delete</button>
+                            )
+                        }
+                          
+                        </td>
                     </tr>
                     ))}
                 </table>
