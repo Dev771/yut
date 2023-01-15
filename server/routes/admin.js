@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require("../models/User");
+const { Video } = require("../models/Video");
 
 const { auth } = require("../middleware/auth");
 
@@ -12,6 +13,48 @@ router.get('/AllUser', (req, res) => {
             res.status(200).json({status: "done", data: found});
         }
     });
+
+});
+
+router.post('/videoApproved', (req, res) => {
+    Video.findById(req.body, (err, found) => {
+        if(err) {
+            return res.status(401).json({status: "Error", message: "Error While Fetching Data"});
+        } else if(!found) {
+            return res.status(200).json({status: "Error", message: "Video Not Found"});
+        } else {
+            Video.findByIdAndUpdate(found._id, {approved: true}, (err, done) => {
+                if(err) res.status(401).json({ status: "Error", message: "Error While Updating the Data"})
+                else res.status(200).json({ status: "Success", data: done});
+            })
+        }
+    })
+})
+
+router.delete('/deleteVideo', (req, res) => {
+    // res.json(req.body);
+    Video.findById(req.body, (err, found) => {
+        if(err) {
+            return res.status(401).json({status: "Error", message: "Error While Fetching Data"});
+        } else if(!found) {
+            return res.status(200).json({status: "Error", message: "Video Not Found"});
+        } else {
+            Video.findByIdAndDelete(found._id, (err, done) => {
+                if(err) res.status(401).json({ status: "Error", message: " Error While Deleting the data"})
+                else res.status(200).json({status: "Success", message: "Video Deleted SuccessFully"})
+            })
+        }
+    })
+})
+
+router.get("/getVideosforApproval", (req, res) => {
+
+    Video.find({approved: false})
+        .populate('writer')
+        .exec((err, videos) => {
+            if(err) return res.status(400).send(err);
+            res.status(200).json({ success: true, videos })
+        })
 
 });
 

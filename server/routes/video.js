@@ -81,7 +81,7 @@ router.post("/thumbnail", (req, res) => {
 
 router.get("/getVideos", (req, res) => {
 
-    Video.find()
+    Video.find({ approved: true})
         .populate('writer')
         .exec((err, videos) => {
             if(err) return res.status(400).send(err);

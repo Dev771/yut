@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import '../AdminMainPage.css';
 import axios from 'axios';
 import {Typography } from 'antd';
+import AdminMainPage from '../AdminMainPage';
 const { Title } = Typography;
 
-const Videoapp = () => {
+const Videoapp = (props) => {
 
     const [videos, setVideos] = useState([])
 
@@ -20,20 +21,10 @@ const Videoapp = () => {
             })
     }, [])
 
+
   return (
     <div className='flex'>
-        <div className='Left sidebar'>
-            <span>VIEW</span>
-                <ul>
-                    <li><a href="/Videoview">Video</a></li>
-                    <li><a href="/Userview">User</a></li>
-                </ul>
-            <span>APPROVAL</span>
-                <ul>
-                    <li><a href="/AppVideo">Video</a></li>
-                    <li><a href="/Appuser">User</a></li>
-                </ul>
-        </div>
+        <AdminMainPage props={props} />
         <div className='Right'>
              <Title level={2} > All Video  </Title>
                 <table style={{width:"100%"}}>

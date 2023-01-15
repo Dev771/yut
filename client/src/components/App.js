@@ -29,10 +29,10 @@ function App() {
           <Route exact path="/video/:videoId" component={Auth(DetailVideoPage, null)} />
           <Route exact path="/subscription" component={Auth(SubscriptionPage, null)} />
           {/* <Route exact path='/Admin123' component={Auth(AdminPage, null)} /> */}
-          <Route exact path='/Userview' component={Auth(Viewuser, null)} />
-          <Route exact path='/Videoview' component={Auth(ViewVideo, null)} />
-          <Route exact path='/Appuser' component={Auth(Usersapp, null)} />
-          <Route exact path='/AppVideo' component={Auth(Videoapp, null)} />
+          <Route exact path='/Userview' component={Auth(Viewuser, true)} />
+          <Route exact path='/Videoview' component={Auth(ViewVideo, true)} />
+          <Route exact path='/Appuser' component={Auth(Usersapp, true)} />
+          <Route exact path='/AppVideo' component={Auth(Videoapp, true)} />
         </Switch>
       </div>
       <Footer />

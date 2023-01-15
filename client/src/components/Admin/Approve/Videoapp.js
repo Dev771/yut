@@ -2,17 +2,43 @@ import React, { useEffect, useState } from 'react';
 import '../AdminMainPage.css';
 import axios from 'axios';
 import {Typography } from 'antd';
+import AdminMainPage from '../AdminMainPage';
+// import { useNavigate } from 'react-router-dom'
 const { Title } = Typography;
 
-const Videoapp = () => {
+const Videoapp = (props) => {
 
-    const [videos, setVideos] = useState([])
+    const [videos, setVideos] = useState([]);
+    // const navigate = useNavigate();
+
+    const handleClick = (video, Condition) => {
+        
+        Condition === 'approve' ? (
+            axios.post('/api/admin/videoApproved', { _id: video._id })
+                .then(response => {
+                    if(response.data.status === "Success") {
+                        window.location.reload()
+                    } else {
+                        alert(response.data.message)
+                    }
+                })
+        ) : (
+            axios.delete('/api/admin/deleteVideo', { data: {_id: video._id}})
+                .then(response => {
+                    if(response.data.status === 'Success') {
+                        window.location.reload()
+                    } else {
+                        alert(response.data.message)
+                    }
+                })
+        )
+        
+    }
 
     useEffect(() => {
-        axios.get('/api/video/getVideos')
+        axios.get('/api/admin/getVideosforApproval')
             .then(response => {
                 if (response.data.success) {
-                    console.log(response.data.videos)
                     setVideos(response.data.videos)
                 } else {
                     alert('Failed to get Videos')
@@ -22,21 +48,11 @@ const Videoapp = () => {
 
   return (
     <div className='flex'>
-        <div className='Left sidebar'>
-            <span>VIEW</span>
-                <ul>
-                    <li><a href="/Videoview">Video</a></li>
-                    <li><a href="/Userview">User</a></li>
-                </ul>
-            <span>APPROVAL</span>
-                <ul>
-                    <li><a href="/AppVideo">Video</a></li>
-                    <li><a href="/Appuser">User</a></li>
-                </ul>
-        </div>
+        <AdminMainPage props={props} />
         <div className='Right'>
              <Title level={2} > Video Approval </Title>
                 <table style={{width:"100%"}}>
+                    <tbody>
                     <tr>
                     <th>Title</th>
                     <th>Thumbnail</th>
@@ -44,8 +60,8 @@ const Videoapp = () => {
                     {/* <th>Description</th> */}
                     <th>Action</th>  
                     </tr>
-                    {videos.map(a => (
-                    <tr>
+                    {videos.map((a, i) => (
+                    <tr key={i}>
                         <td>{a.title}</td>
                         <td>
                             <a href={`/video/${a._id}`}>
@@ -54,9 +70,10 @@ const Videoapp = () => {
                         </td>
                         <td style={{fontWeight:"900"}}>{a.writer.name}</td>
                         {/* <td>{a.email}</td> */}
-                        <td><button>Approve</button>  / <button>Delete</button></td>
+                        <td><button onClick={() => handleClick(a, 'approve')}>Approve</button>  / <button onClick={() => handleClick(a, 'reject')}>Reject</button></td>
                     </tr>
                     ))}
+                    </tbody>
                 </table>
         </div>
     </div>

@@ -10,6 +10,10 @@ const videoSchema = mongoose.Schema({
         type:String,
         maxlength:50,
     },
+    approved: {
+        type: Boolean,
+        default: 0,
+    },
     description: {
         type: String,
     },
