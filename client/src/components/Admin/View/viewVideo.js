@@ -34,6 +34,7 @@ const Videoapp = (props) => {
                     <th>Thumbnail</th>
                     <th>Date</th>
                     <th>Description</th>
+                    <th>Views</th>
                     <th>Duration</th>
                     <th>Author</th>
                     <th>Author Email</th>
@@ -50,6 +51,7 @@ const Videoapp = (props) => {
                         </td>
                         <td>{moment(a.createdAt).format("MMM Do YY")}</td>
                         <td>{a.description}</td>
+                        <td>{a.views}</td>
                         <td>{a.duration}</td>
                         <td style={{fontWeight:"900"}}>{a.writer.name}</td>
                         <td>{a.writer.email}</td>

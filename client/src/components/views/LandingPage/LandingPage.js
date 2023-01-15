@@ -26,6 +26,7 @@ function LandingPage() {
 
 
 
+
     const renderCards = Videos.map((video, index) => {
 
         var minutes = Math.floor(video.duration / 60);
@@ -33,7 +34,7 @@ function LandingPage() {
 
         return <Col lg={6} md={8} xs={24}>
             <div style={{ position: 'relative' }}>
-                <a href={`/video/${video._id}`} >
+                <a href={`/video/${video._id}`}>
                 <div className='aspect'>
                     <img style={{ width: '100%',borderRadius: "5%", height:"100%" }} alt="thumbnail" src={`http://localhost:5000/${video.thumbnail}`} />
                 </div>

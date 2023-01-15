@@ -112,7 +112,10 @@ router.post("/getVideo", (req, res) => {
     .populate('writer')
     .exec((err, video) => {
         if(err) return res.status(400).send(err);
-        res.status(200).json({ success: true, video })
+        Video.findByIdAndUpdate(req.body.videoId , {$inc:{views:1}},(err,done) => {
+            if(err) return res.status(400).send(err);
+            res.status(200).json({ success: true, video })            
+        })
     })
 });
 
@@ -142,5 +145,7 @@ router.post("/getSubscriptionVideos", (req, res) => {
             })
     })
 });
+
+
 
 module.exports = router;

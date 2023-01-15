@@ -8,7 +8,7 @@ function Footer() {
             flexDirection: 'column', alignItems: 'center',
             justifyContent: 'center', fontSize:'1rem'
         }}>
-           <p> Made by Dev Garg  <Icon type="smile" /></p>
+           <p> Made by Dev Garg and Naman Bhateja  <Icon type="smile" /></p>
         </div>
     )
 }

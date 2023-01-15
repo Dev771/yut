@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import  DeleteOutlined  from '@ant-design/icons';
 import '../AdminMainPage.css';
 import axios from 'axios';
-import {Typography,Avatar } from 'antd';
+import {Typography,Avatar,Icon } from 'antd';
 import AdminMainPage from '../AdminMainPage';
 const { Title } = Typography;
 
@@ -55,6 +55,7 @@ const Usersapp = (props) => {
                             a.type === 'User' ? (
                                 <button className='button cancel' onClick={() => handleClick(a)}>
                                     <div>
+                                        <Icon type="delete" />
                                         <span>
                                             Delete
                                         </span>
