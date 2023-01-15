@@ -16,6 +16,19 @@ router.get('/AllUser', (req, res) => {
 
 });
 
+router.delete('/deleteUser', (req, res) => {
+    User.findById(req.body._id, (err, found) => {
+        if(err) res.status(401).json({status: "Error", message: "Error While Fetching The Data"});
+        else if(!found) res.status(200).json({status: "Error", message: "Invalid User"})
+        else {
+            User.findByIdAndDelete(req.body._id, (err, done) => {
+                if(err) res.status(401).json({status: "Error", message: "Error While Deleteing The Data"});
+                else res.status(200).json({status: "Success", message: "User Gone To Pavilian!!!"});
+            })
+        }
+    })
+})
+
 router.post('/videoApproved', (req, res) => {
     Video.findById(req.body, (err, found) => {
         if(err) {

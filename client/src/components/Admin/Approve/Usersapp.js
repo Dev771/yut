@@ -16,7 +16,18 @@ const Usersapp = (props) => {
                 console.log(response);
                 setUser(response.data.data);
             })    
-    },[])
+    },[]);
+
+    const handleClick = (user) => {
+        axios.delete(`/api/admin/deleteUser`, {data: user})
+            .then(response => {
+                if(response.data.status === 'Error') {
+                    alert(response.data.message)
+                } else {
+                    window.location.reload()
+                }
+            })
+    }
     
   return (
     <div className='flex'>
@@ -41,14 +52,14 @@ const Usersapp = (props) => {
                         <td>{a.type}</td>
                         <td>
                         {
-                            a.type == 'User' ? (
-                                <button className='button cancel'>
-                            <div>
-                                <span>
-                                    Delete
-                                </span>
-                            </div>
-                            </button>
+                            a.type === 'User' ? (
+                                <button className='button cancel' onClick={() => handleClick(a)}>
+                                    <div>
+                                        <span>
+                                            Delete
+                                        </span>
+                                    </div>
+                                </button>
                             ) : (
                                 <button className='button admin'>Can not Delete</button>
                             )
