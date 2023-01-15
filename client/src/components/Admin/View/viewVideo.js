@@ -22,6 +22,18 @@ const Videoapp = (props) => {
             })
     }, [])
 
+    const handleClick = (video) =>{
+
+        axios.delete('/api/admin/deleteVideo', { data: {_id: video._id}})
+        .then(response => {
+            if(response.data.status === 'Success') {
+                window.location.reload()
+            } else {
+                alert(response.data.message)
+            }
+        })
+    }
+
 
   return (
     <div className='flex'>
@@ -56,7 +68,7 @@ const Videoapp = (props) => {
                         <td style={{fontWeight:"900"}}>{a.writer.name}</td>
                         <td>{a.writer.email}</td>
                         <td>{a.writer._id}</td>
-                        <td><button className='button cancel'>Delete</button></td>
+                        <td><button className='button cancel' onClick={() => handleClick(a)}>Delete</button></td>
                     </tr>
                     ))}
                 </table>
