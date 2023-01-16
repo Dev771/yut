@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../AdminMainPage.css';
 import axios from 'axios';
 import moment from 'moment';
-import {Typography } from 'antd';
+import {Typography ,Icon} from 'antd';
 import AdminMainPage from '../AdminMainPage';
 // import { useNavigate } from 'react-router-dom'
 const { Title } = Typography;
@@ -79,8 +79,20 @@ const Videoapp = (props) => {
                         <td style={{fontWeight:"900"}}>{a.writer.name}</td>
                         <td>{a.writer.email}</td>
                         <td>{a.writer._id}</td>
-                        <td><button className='button approve' onClick={() => handleClick(a, 'approve')}>Approve</button>   
-                        <button className='button cancel' onClick={() => handleClick(a, 'reject')}>Reject</button></td>
+                        <td>
+                            <button className='button approve' onClick={() => handleClick(a, 'approve')}>
+                                <div>
+                                    <Icon type="check" />
+                                    <span>Approve</span>
+                                </div>
+                            </button>   
+                            <button className='button cancel' onClick={() => handleClick(a, 'reject')}>
+                                <div>
+                                    <Icon type="close" />
+                                    <span>Reject</span>
+                                </div>
+                            </button>
+                        </td>
                     </tr>
                     ))}
                     </tbody>
