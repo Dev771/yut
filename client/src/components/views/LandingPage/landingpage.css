@@ -1,3 +1,23 @@
 .aspect{
     aspect-ratio: 16/9;
 }
+
+.headings{
+    display: flex;
+    gap: 1.5em;
+    /* flex-direction: column; */
+}
+
+.headings > a , .title{
+    width: fit-content;
+    text-decoration: none;
+    color: black;
+}
+
+.headings > a{
+    margin-top: 8px;
+    font-weight: 700;
+    font-size: 1.5em;
+    /* font-size: 3em; */
+}
+

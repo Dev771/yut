@@ -41,6 +41,7 @@ const Usersapp = (props) => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>User Type</th>
+                            <th>User Type</th>
                             <th>Action</th>
                         </tr>
                 {user.map(a => (
@@ -50,6 +51,20 @@ const Usersapp = (props) => {
                         <td style={{fontWeight:"900"}}>{a.name}</td>
                         <td>{a.email}</td>
                         <td>{a.type}</td>
+                            <td>
+                            <button className='button approve' onClick={() => handleClick(a, 'approve')}>
+                                <div>
+                                    <Icon type="check" />
+                                    <span>Approve</span>
+                                </div>
+                            </button>   
+                            <button className='button cancel' onClick={() => handleClick(a, 'reject')}>
+                                <div>
+                                    <Icon type="close" />
+                                    <span>Reject</span>
+                                </div>
+                            </button>
+                        </td>
                         <td>
                         {
                             a.type === 'User' ? (

@@ -77,11 +77,21 @@ router.post("/thumbnail", (req, res) => {
 });
 
 
+router.get("/getVideos/", (req, res) => {
 
+    Video.find({approved: true})
+        .populate('writer')
+        .exec((err, videos) => {
+            if(err) return res.status(400).send(err);
+            res.status(200).json({ success: true, videos })
+        })
 
-router.get("/getVideos", (req, res) => {
+});
 
-    Video.find({ approved: true})
+router.get("/getVideos/:id", (req, res) => {
+    const category = req.params.id;
+
+    Video.find({ category ,approved: true})
         .populate('writer')
         .exec((err, videos) => {
             if(err) return res.status(400).send(err);

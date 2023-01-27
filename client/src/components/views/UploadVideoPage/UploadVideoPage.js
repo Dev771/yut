@@ -13,11 +13,13 @@ const Private = [
 ]
 
 const Catogory = [
-    { value: 0, label: "Film & Animation" },
-    { value: 0, label: "Autos & Vehicles" },
-    { value: 0, label: "Music" },
-    { value: 0, label: "Pets & Animals" },
-    { value: 0, label: "Sports" },
+    { value: 0, label: "C" },
+    { value: 0, label: "C++" },
+    { value: 0, label: "CSS" },
+    { value: 0, label: "HTML" },
+    { value: 0, label: "JavaScript" },
+    { value: 0, label: "Python" },
+    { value: 0, label: "others" },
 ]
 
 function UploadVideoPage(props) {
@@ -26,7 +28,7 @@ function UploadVideoPage(props) {
     const [title, setTitle] = useState("");
     const [Description, setDescription] = useState("");
     const [privacy, setPrivacy] = useState(0)
-    const [Categories, setCategories] = useState("Film & Animation")
+    const [Categories, setCategories] = useState("C")
     const [FilePath, setFilePath] = useState("")
     const [Duration, setDuration] = useState("")
     const [Thumbnail, setThumbnail] = useState("")

@@ -11,6 +11,7 @@ import Footer from "./views/Footer/Footer"
 import UploadVideoPage from "./views/UploadVideoPage/UploadVideoPage"
 import DetailVideoPage from "./views/DetailVideoPage/DetailVideoPage"
 import SubscriptionPage from "./views/SubscriptionPage/SubscriptionPage"
+import AllVideos from './views/Allvideos/AllVideos';
 import Usersapp from './Admin/Approve/Usersapp';
 import Videoapp from './Admin/Approve/Videoapp';
 import ViewVideo from './Admin/View/viewVideo';
@@ -23,6 +24,7 @@ function App() {
       <div style={{ paddingTop: '75px', minHeight: 'calc(100vh - 80px)' }}>
         <Switch>
           <Route exact path="/" component={Auth(LandingPage, null)} />
+          <Route exact path="/Allvideos" component={Auth(AllVideos, null)} />
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/video/upload" component={Auth(UploadVideoPage, true)} />

@@ -1,9 +1,13 @@
-import React from "react";
+import React ,{useState} from "react";
 import moment from "moment";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { registerUser } from "../../../_actions/user_actions";
 import { useDispatch } from "react-redux";
+// import { DownOutlined, SmileOutlined } from '@ant-design/icons';
+import { Dropdown, Space } from 'antd';
+import { Select } from 'antd';
+
 
 import {
   Form,
@@ -34,8 +38,13 @@ const tailFormItemLayout = {
   },
 };
 
+
 function RegisterPage(props) {
   const dispatch = useDispatch();
+  const { Option } = Select;
+
+  
+  
   return (
 
     <Formik
@@ -44,9 +53,10 @@ function RegisterPage(props) {
         lastName: '',
         name: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
       }}
-      validationSchema={Yup.object().shape({
+      validationSchema={Yup.object().shape(
+      {
         name: Yup.string()
           .required('Name is required'),
         lastName: Yup.string()
@@ -68,13 +78,14 @@ function RegisterPage(props) {
             email: values.email,
             password: values.password,
             name: values.name,
-            lastname: values.lastname,
+            lastname: values.lastName,
             image: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`
           };
 
           dispatch(registerUser(dataToSubmit)).then(response => {
             if (response.payload.success) {
-              props.history.push("/login");
+              // props.history.push("/login");
+              console.log(response.payload)
             } else {
               alert(response.payload.err.errmsg)
             }
@@ -96,6 +107,8 @@ function RegisterPage(props) {
           handleSubmit,
           handleReset,
         } = props;
+
+
         return (
           <div className="app">
             <h2>Sign up</h2>
@@ -151,7 +164,6 @@ function RegisterPage(props) {
                   <div className="input-feedback">{errors.email}</div>
                 )}
               </Form.Item>
-
               <Form.Item required label="Password" hasFeedback validateStatus={errors.password && touched.password ? "error" : 'success'}>
                 <Input
                   id="password"

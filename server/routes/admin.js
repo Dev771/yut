@@ -71,4 +71,17 @@ router.get("/getVideosforApproval", (req, res) => {
 
 });
 
+// router.get("/makeAdmin", (req,res) =>{
+
+//     User.findOne({_id:req.body._id}, (err, found) => {
+//         if(err) {
+//             res.status(401).json({status: "Error", message: "Error While Fetching The Data"});
+//         } else {
+//             res.status(200).json({status: "done", data: found});
+//         }
+//     });
+// });
+
+
+
 module.exports = router;
