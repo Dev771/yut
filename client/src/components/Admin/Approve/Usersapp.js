@@ -18,6 +18,17 @@ const Usersapp = (props) => {
             })    
     },[]);
 
+    const handleClick1 = (user, cond) => {
+        axios.post(`/api/admin/AppUser`, {data: user, cond})
+            .then(response => {
+                if(response.data.status === 'Error') {
+                    alert(response.data.message)
+                } else {
+                    window.location.reload()
+                }
+            })
+    }
+
     const handleClick = (user) => {
         axios.delete(`/api/admin/deleteUser`, {data: user})
             .then(response => {
@@ -51,19 +62,22 @@ const Usersapp = (props) => {
                         <td style={{fontWeight:"900"}}>{a.name}</td>
                         <td>{a.email}</td>
                         <td>{a.type}</td>
-                            <td>
-                            <button className='button approve' onClick={() => handleClick(a, 'approve')}>
-                                <div>
-                                    <Icon type="check" />
-                                    <span>Approve</span>
-                                </div>
-                            </button>   
-                            <button className='button cancel' onClick={() => handleClick(a, 'reject')}>
-                                <div>
-                                    <Icon type="close" />
-                                    <span>Reject</span>
-                                </div>
-                            </button>
+                        <td>
+                            {a.type === 'User' ?  (
+                                <button className='button approve' onClick={() => handleClick1(a, 'approve')}>
+                                    <div>
+                                        <Icon type="check" />
+                                        <span>Approve</span>
+                                    </div>
+                                </button>   
+                            ) : (
+                                <button className='button cancel' onClick={() => handleClick1(a, 'reject')}>
+                                    <div>
+                                        <Icon type="close" />
+                                        <span>Reject</span>
+                                    </div>
+                                </button>
+                            )} 
                         </td>
                         <td>
                         {

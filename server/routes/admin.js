@@ -71,6 +71,36 @@ router.get("/getVideosforApproval", (req, res) => {
 
 });
 
+router.post('/AppUser', (req, res) => {
+    if(req.body.cond === 'approve') {
+        User.findById(req.body.data._id, (err, found) => {
+            if(err) {
+                return res.status(401).json({status: "Error", message: "Error While Fetching Data"});
+            } else if(!found) {
+                return res.status(200).json({status: "Error", message: "User Not Found"});
+            } else {
+                User.findByIdAndUpdate(found._id, {type: 'Admin'} ,(err, done) => {
+                    if(err) res.status(401).json({ status: "Error", message: "Error While Updating User"})
+                    else res.status(200).json({status: "Success", message: "User Updated SuccessFully"})
+                })
+            }
+        })
+    } else {
+        User.findById(req.body.data._id, (err, found) => {
+            if(err) {
+                return res.status(401).json({status: "Error", message: "Error While Fetching Data"});
+            } else if(!found) {
+                return res.status(200).json({status: "Error", message: "User Not Found"});
+            } else {
+                User.findByIdAndUpdate(found._id, {type: 'User'} ,(err, done) => {
+                    if(err) res.status(401).json({ status: "Error", message: "Error While Updating User"})
+                    else res.status(200).json({status: "Success", message: "User Updated SuccessFully"})
+                })
+            }
+        })
+    }
+});
+
 // router.get("/makeAdmin", (req,res) =>{
 
 //     User.findOne({_id:req.body._id}, (err, found) => {
