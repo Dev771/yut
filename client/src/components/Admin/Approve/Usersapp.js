@@ -74,7 +74,7 @@ const Usersapp = (props) => {
                                 <button className='button cancel' onClick={() => handleClick1(a, 'reject')}>
                                     <div>
                                         <Icon type="close" />
-                                        <span>Reject</span>
+                                        <span>Remove Admin</span>
                                     </div>
                                 </button>
                             )} 
